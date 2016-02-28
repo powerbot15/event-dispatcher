@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/powerbot15/event-dispatcher/issues"
   },
-  "homepage": "https://github.com/powerbot15/event-dispatcher#readme"
+  "homepage": "https://github.com/powerbot15/event-dispatcher#readme",
+  "dependencies": {
+    "requirejs": "^2.1.22"
+  }
 }
