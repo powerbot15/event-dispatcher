@@ -1,7 +1,7 @@
 # Events Dispatcher
 ## Easy handling of custom logical events
  
- Event dispatcher is a lightweight javascript module for custom events handling.
+ Event dispatcher is a lightweight frontend javascript module for custom events handling.
  
 
 ### Usage:
