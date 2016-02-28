@@ -8,11 +8,12 @@ EventsDispatcher.prototype = {
     on : function(events, listenerCallback, context){
 
         var handler = {
-            callback : typeof listenerCallback == 'function' ? listenerCallback : null,
-            context : context ? context : this
-        },
+                callback : typeof listenerCallback == 'function' ? listenerCallback : null,
+                context : context ? context : this
+            },
             eventsArray = events.split(' '),
             self = this;
+
         eventsArray.forEach(function(eventName){
             if(self.listeners.hasOwnProperty(eventName)){
                 self.listeners[eventName].push(handler);
@@ -29,10 +30,12 @@ EventsDispatcher.prototype = {
             self = this;
 
         eventsArray.forEach(function(event){
+            var iterationListeners;
             if(self.listeners.hasOwnProperty(event)){
-                for(var i = 0; i < self.listeners.length; i++){
-                    if(self.listeners[i].callback.toString() == listenerCallback.toString()){
-                        self.listeners.splice(i, 1);
+                iterationListeners = self.listeners[event];
+                for(var i = 0; i < iterationListeners.length; i++){
+                    if(iterationListeners[i].callback.toString() == listenerCallback.toString()){
+                        iterationListeners.splice(i, 1);
                         return;
                     }
                 }
@@ -54,15 +57,16 @@ EventsDispatcher.prototype = {
         }
 
         eventsArray.forEach(function(event){
-            var eventListener;
+            var eventListeners;
             if(self.listeners.hasOwnProperty(event)){
-                eventListener = self.listeners[event];
-                eventListener.callback.apply(eventListener.context, callbackData);
+                eventListeners = self.listeners[event];
+                for(var i = 0; i < eventListeners.length; i++){
+                    eventListeners[i].callback.apply(eventListeners[i].context, callbackData);
+                }
+
             }
         })
     }
-
-
 
 };
 
