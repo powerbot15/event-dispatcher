@@ -3,8 +3,22 @@
  
  Event dispatcher is a lightweight frontend javascript module for custom events handling.
  
+### Installation
+
+In the project directory:
+
+```
+npm install events-dispatcher
+```
 
 ### Usage:
+
+#### HTML
+```HTML
+<script src="node_modules/events-dispatcher/events-dispatcher.js"></script>
+```
+#### JavaScript
+
 ```javascript
 var dispatcher = new EventsDispatcher();
 ```

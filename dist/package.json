@@ -1,0 +1,24 @@
+{
+  "name": "events-dispatcher",
+  "version": "1.0.0",
+  "description": "Easy handling of the custom data events in frontend javascript",
+  "main": "events-dispatcher.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powerbot15/event-dispatcher.git"
+  },
+  "keywords": [
+    "dispatcher",
+    "events",
+    "events-dispatcher"
+  ],
+  "author": "Oleh Kastornov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/powerbot15/event-dispatcher/issues"
+  },
+  "homepage": "https://github.com/powerbot15/event-dispatcher#readme"
+}
