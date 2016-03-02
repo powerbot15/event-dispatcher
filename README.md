@@ -13,11 +13,13 @@ npm install events-dispatcher
 
 ### Usage:
 
-#### HTML
+#### HTML:
+
+Fill free to change module path for your own project structure
 ```HTML
-<script src="node_modules/events-dispatcher/events-dispatcher.js"></script>
+<script src="/node_modules/events-dispatcher/events-dispatcher.js"></script>
 ```
-#### JavaScript
+#### JavaScript:
 
 ```javascript
 var dispatcher = new EventsDispatcher();
