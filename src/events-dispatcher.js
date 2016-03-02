@@ -20,7 +20,10 @@
                     },
                     eventsArray = events.split(' '),
                     self = this;
-
+                if(!handler.callback){
+                    console.log('No listener passed to event(s) "' + events.toString() + '"');
+                    return;
+                }
                 eventsArray.forEach(function(eventName){
                     if(self.listeners.hasOwnProperty(eventName)){
                         self.listeners[eventName].push(handler);
@@ -70,7 +73,6 @@
                         for(var i = 0; i < eventListeners.length; i++){
                             eventListeners[i].callback.apply(eventListeners[i].context, callbackData);
                         }
-
                     }
                 })
             }
