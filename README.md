@@ -32,10 +32,12 @@ dispatcher.on('dataLoaded dataUpdated', callback, context);
 
 ...
 
-dispatcher.trigger('dataLoaded', dataToCallback1, ... ,  dataToCallbackN);
+dispatcher.trigger('dataLoaded', dataObject1, ... ,  dataObjectN);
 
 ...
 
-dispatcher.trigger('dataUpdated', dataToCallback1, ... ,  dataToCallbackN);
+dispatcher.trigger('dataUpdated', dataObject1, ... ,  dataObjectN);
 ```
+
+Data objects deliver to all of attached to event listeners as their arguments
     
