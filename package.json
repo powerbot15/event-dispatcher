@@ -1,6 +1,6 @@
 {
   "name": "event-dispatcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple event dispatcher with jQuery like handlers notation",
   "main": "src/events-dispatcher.js",
   "scripts": {
