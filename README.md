@@ -24,11 +24,15 @@ Fill free to change module path for your own project structure
 ```javascript
 var dispatcher = new EventsDispatcher();
 ```
-**Events dispatcher uses jQuery like events handling notation**
+**Events dispatcher uses jQuery like events handling notation BUT enables you to pass a custom context to callback as `this`**
 
 ```javascript
 
 dispatcher.on('dataLoaded dataUpdated', callback, context);
+
+...
+
+dispatcher.once('someEventToProceedOnce', callbackToExecuteOnce, context);
 
 ...
 
@@ -37,6 +41,11 @@ dispatcher.trigger('dataLoaded', dataObject1, ... ,  dataObjectN);
 ...
 
 dispatcher.trigger('dataUpdated', dataObject1, ... ,  dataObjectN);
+
+...
+
+dispatcher.off('dataLoaded dataUpdated');
+
 ```
 
 Data objects deliver to all of attached to event listeners as their arguments

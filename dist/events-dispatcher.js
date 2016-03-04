@@ -20,18 +20,35 @@
                     },
                     eventsArray = events.split(' '),
                     self = this;
+                this.addCallback(eventsArray, handler);
+            },
+
+            once : function(events, listenerCallback, context){
+                var eventsArray = events.split(' '),
+                    handler = {
+                        callback : typeof listenerCallback == 'function' ? listenerCallback : null,
+                        context : context ? context : this,
+                        once : true
+                    };
+
+                this.addCallback(eventsArray, handler);
+
+            },
+
+            addCallback : function(events, handler){
+                var self = this;
+
                 if(!handler.callback){
                     console.log('No listener passed to event(s) "' + events.toString() + '"');
                     return;
                 }
-                eventsArray.forEach(function(eventName){
+                events.forEach(function(eventName){
                     if(self.listeners.hasOwnProperty(eventName)){
                         self.listeners[eventName].push(handler);
                         return;
                     }
                     self.listeners[eventName] = [handler];
                 })
-
             },
 
             off : function(events, listenerCallback){
@@ -69,10 +86,10 @@
                 eventsArray.forEach(function(event){
                     var eventListeners;
                     if(self.listeners.hasOwnProperty(event)){
-                        eventListeners = self.listeners[event];
-                        for(var i = 0; i < eventListeners.length; i++){
-                            eventListeners[i].callback.apply(eventListeners[i].context, callbackData);
-                        }
+                        self.listeners[event] = self.listeners[event].filter(function(el){
+                            el.callback.apply(el.context, callbackData);
+                            return !el.once;
+                        });
                     }
                 })
             }

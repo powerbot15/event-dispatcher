@@ -13,10 +13,15 @@ define([
        },
 
        listenEvents : function(){
+
            dispatcher.on('customImportantEvent', this.controllerEventListener, this);
+
+           dispatcher.once('onlyOnce', this.onlyOnceExecuted, this);
+
        },
 
        controllerEventListener : function(data){
+
            var msgElement = this.el.querySelector('[data-message]'),
                outPrint = this.name + ' : ' + data.message;
 
@@ -26,6 +31,21 @@ define([
            else{
                console.log(outPrint);
            }
+
+       },
+
+       onlyOnceExecuted : function(data){
+
+           var msgElement = this.el.querySelector('[data-once-message]'),
+               outPrint = this.name + ' : ' + data.message;
+
+           if(msgElement){
+               msgElement.textContent = outPrint;
+           }
+           else{
+               console.log(outPrint);
+           }
+
        }
 
    }
