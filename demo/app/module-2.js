@@ -9,6 +9,7 @@ define([
        init : function(){
            this.name = 'Module 2';
            this.el = document.getElementById('module-2');
+           this.deBounceResult = this.el.querySelector('[data-debounce-result]');
            this.listenEvents();
        },
 
@@ -16,7 +17,15 @@ define([
 
            dispatcher.on('customImportantEvent', this.controllerEventListener, this);
 
+           dispatcher.deBouncedOn(500, 'newInput', this.deBouncedListener, this);
+
            dispatcher.once('onlyOnce', this.onlyOnceExecuted, this);
+
+       },
+
+       deBouncedListener : function(value){
+
+           this.deBounceResult.innerText = value;
 
        },
 

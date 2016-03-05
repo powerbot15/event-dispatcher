@@ -35,6 +35,36 @@
 
             },
 
+            deBouncedOn : function(delay, events, listenerCallback, context){
+
+                var eventsArr = events.split(' '),
+                    handler = {
+                        context : context ? context : this
+                    },
+                    saveCallback = listenerCallback,
+                    saveDelay = delay,
+                    timeout;
+
+                handler.callback = function(){
+
+                    var args = arguments,
+                        self = this;
+
+                    if(timeout) {
+                        clearTimeout(timeout);
+                    }
+                    timeout = setTimeout(function(){
+                        saveCallback.apply(self, args);
+                    }, saveDelay);
+
+                };
+
+                this.addCallback(eventsArr, handler);
+
+
+
+            },
+
             addCallback : function(events, handler){
                 var self = this;
 

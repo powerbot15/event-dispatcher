@@ -28,25 +28,33 @@ var dispatcher = new EventsDispatcher();
 
 ```javascript
 
-dispatcher.on('dataLoaded dataUpdated', callback, context);
+dispatcher.on(eventName, callback, context);
 
 ...
 
-dispatcher.once('someEventToProceedOnce', callbackToExecuteOnce, context);
+dispatcher.once(eventName, callbackToExecuteOnce, context);
 
 ...
 
-dispatcher.trigger('dataLoaded', dataObject1, ... ,  dataObjectN);
+dispatcher.deBouncedOn(delay, eventName, callbackToDeBounce, context);
 
 ...
 
-dispatcher.trigger('dataUpdated', dataObject1, ... ,  dataObjectN);
+dispatcher.trigger(eventName, dataObject1, ... ,  dataObjectN);
 
 ...
 
-dispatcher.off('dataLoaded dataUpdated');
+dispatcher.off(event, callback);
 
 ```
-
 Data objects deliver to all of attached to event listeners as their arguments
+
+**Added `dispatcher.deBouncedOn(delay, events, callback, context)` method**
+
+**Description**
+
+Use it for preventing frequent calls of the `callback`. It waits `delay` in ms and if it was no attempts to call the `callback` during `delay` time, callback is fired. Otherwise debounce timer is being restarted and waiting `delay` period again 
+ 
+ 
+
     

@@ -1,7 +1,7 @@
 {
   "name": "events-dispatcher",
-  "version": "1.0.2",
-  "description": "Easy handling of the custom data events in frontend javascript",
+  "version": "1.0.3",
+  "description": "Event dispatcher is a lightweight frontend javascript module for custom events handling.",
   "main": "events-dispatcher.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
