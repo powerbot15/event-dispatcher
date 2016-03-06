@@ -2,7 +2,12 @@
     if (typeof define === 'function' && define.amd) {
         define([], dispatcherModule);
     } else {
-        EventsDispatcher = dispatcherModule();
+        if(module && module.hasOwnProperty('exports')){
+            module.exports = new (dispatcherModule())();
+        }
+        else{
+            EventsDispatcher = dispatcherModule();
+        }
     }
 
     function dispatcherModule(){

@@ -1,7 +1,7 @@
 # Events Dispatcher
 ## Easy handling of custom logical events
  
- Event dispatcher is a lightweight frontend javascript module for custom events handling.
+ Event dispatcher is a lightweight javascript module for custom events handling in **both frontend javascript and Node.js**.
  
 ### Installation
 
@@ -13,6 +13,22 @@ npm install events-dispatcher
 
 ### Usage:
 
+#### Node.js
+```javascript
+
+var dispatcher = require('events-dispatcher');
+
+dispatcher.on(eventName, callback, context);
+
+function callback(dataArg1, ..., dataArgN){
+    ...
+}
+
+...
+
+dispatcher.trigger(eventName, dataArg1, ..., dataArgN)
+
+```
 #### HTML:
 
 Fill free to change module path for your own project structure
@@ -40,11 +56,11 @@ dispatcher.deBouncedOn(delay, eventName, callbackToDeBounce, context);
 
 ...
 
-dispatcher.trigger(eventName, dataObject1, ... ,  dataObjectN);
+dispatcher.trigger(eventName, dataArg1, ... ,  dataArgN);
 
 ...
 
-dispatcher.off(event, callback);
+dispatcher.off(eventName, callback);
 
 ```
 Data objects deliver to all of attached to event listeners as their arguments
