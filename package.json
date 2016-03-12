@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/powerbot15/event-dispatcher#readme",
   "dependencies": {
+    "gulp": "^3.9.1",
     "requirejs": "^2.1.22"
   }
 }

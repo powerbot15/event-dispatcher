@@ -26,6 +26,8 @@
                     eventsArray = events.split(' '),
                     self = this;
                 this.addCallback(eventsArray, handler);
+
+                return this;
             },
 
             once : function(events, listenerCallback, context){
@@ -38,6 +40,7 @@
 
                 this.addCallback(eventsArray, handler);
 
+                return this;
             },
 
             deBouncedOn : function(delay, events, listenerCallback, context){
@@ -66,7 +69,7 @@
 
                 this.addCallback(eventsArr, handler);
 
-
+                return this;
 
             },
 
@@ -94,6 +97,10 @@
                 eventsArray.forEach(function(event){
                     var iterationListeners;
                     if(self.listeners.hasOwnProperty(event)){
+                        if(!listenerCallback){
+                            delete self.listeners[event];
+                            return;
+                        }
                         iterationListeners = self.listeners[event];
                         for(var i = 0; i < iterationListeners.length; i++){
                             if(iterationListeners[i].callback.toString() == listenerCallback.toString()){
@@ -102,8 +109,9 @@
                             }
                         }
                     }
-                })
+                });
 
+                return this;
             },
 
             trigger : function(events /*, callbackArg1, callbackArg2, ...*/){
@@ -111,6 +119,7 @@
                 var eventsArray = events.split(' '),
                     callbackData = [],
                     self = this;
+
                 if(arguments.length > 1){
                     for(var i = 1; i < arguments.length; i++){
                         callbackData.push(arguments[i]);
@@ -126,7 +135,9 @@
                             return !el.once;
                         });
                     }
-                })
+                });
+
+                return this;
             }
 
         };
