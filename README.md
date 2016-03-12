@@ -1,7 +1,10 @@
 # Events Dispatcher
-## Easy handling of custom logical events
+
+## Easy handling of the custom logical events
  
- Event dispatcher is a lightweight javascript module for custom events handling in **both frontend javascript and Node.js**.
+
+ Event dispatcher is a lightweight javascript module for custom events handling in **both Node.js and frontend javascript**.
+
  
 ### Installation
 
@@ -14,8 +17,10 @@ npm install events-dispatcher
 ### Usage:
 
 #### Node.js
-```javascript
 
+Dispatcher module for Node.js provides already created instance of ```Dispatcher``` class
+
+```javascript
 var dispatcher = require('events-dispatcher');
 
 dispatcher.on(eventName, callback, context);
@@ -40,37 +45,62 @@ Fill free to change module path for your own project structure
 ```javascript
 var dispatcher = new EventsDispatcher();
 ```
-**Events dispatcher uses jQuery like events handling notation BUT enables you to pass a custom context to callback as `this`**
+
+### Interface
+
+ **Events dispatcher uses jQuery like events handling notation BUT enables you to pass a custom context to callbacks as `this`**
+ 
+ **_Notice:_** _when_ `context` _is not defined, dispatcher passes_ `window` _or_ `global` _as context to callbacks_
+
+___
 
 ```javascript
-
-dispatcher.on(eventName, callback, context);
-
-...
-
-dispatcher.once(eventName, callbackToExecuteOnce, context);
-
-...
-
-dispatcher.deBouncedOn(delay, eventName, callbackToDeBounce, context);
-
-...
-
-dispatcher.trigger(eventName, dataArg1, ... ,  dataArgN);
-
-...
-
-dispatcher.off(eventName, callback);
-
+    dispatcher.on( eventName, callback [, context] )
 ```
-Data objects deliver to all of attached to event listeners as their arguments
 
-**Added `dispatcher.deBouncedOn(delay, events, callback, context)` method**
+ ```eventName``` - Space separated string with events' names ```'eventA eventB eventC'``` to be listened 
+ ```callback``` - Callback to be fired when event triggered
+ ```context``` - Not required argument to be a context of the fired event callback 
 
-**Description**
+___
 
-Use it for preventing frequent calls of the `callback`. It waits `delay` in ms and if it was no attempts to call the `callback` during `delay` time, callback is fired. Otherwise debounce timer is being restarted and waiting `delay` period again 
+```javascript
+    dispatcher.once( eventName, callback [, context] )
+```
+
  
+ Same as `dispatcher.on()` method but attached callbacks will be fired only once and then destroyed
  
+___
 
-    
+```javascript
+    dispatcher.deBouncedOn(delay, eventName, callback [, context]);
+```
+
+ `deBouncedOn` method allows attach to event debounced callbacks. Such callback will be fired only if within `delay` in milliseconds listened `event` was not fired. If event was fired during the delay, timer refreshed and callback waiting when same delay will finish 
+
+ `delay` - Delay in milliseconds to wait for event firings
+ `eventName` - Space separated string with events' names `'eventA eventB eventC'` to be listened 
+ `callback` - Callback to be fired after `delay` time from the moment event triggered
+ `context` - Not required argument to be a context of the fired event callback  
+
+___
+
+```javascript
+    dispatcher.off(eventName [, callback]);
+```
+
+ `eventName` - Space separated string with events' names `'eventA eventB eventC'`, which callbacks will be removed
+ `callback` - callback function to detach from event callbacks, if not passed, all callbacks of the event will be removed
+
+___
+   
+```javascript
+    dispatcher.trigger(eventName [, dataArg1, ... ,  dataArgN]);
+```
+
+ `trigger()` method fires all attached to event callbacks and debounced callbacks 
+
+ `eventName` - Space separated string with events' names `'eventA eventB eventC'` to be listened 
+ `dataArg1-dataArgN` - Comma-separated data objects(arrays) to pass as parameters to event callbacks
+

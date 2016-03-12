@@ -21,7 +21,7 @@
 
                 var handler = {
                         callback : typeof listenerCallback == 'function' ? listenerCallback : null,
-                        context : context ? context : this
+                        context : context ? context : window || global || this
                     },
                     eventsArray = events.split(' '),
                     self = this;
@@ -34,7 +34,7 @@
                 var eventsArray = events.split(' '),
                     handler = {
                         callback : typeof listenerCallback == 'function' ? listenerCallback : null,
-                        context : context ? context : this,
+                        context : context ? context : window || global || this,
                         once : true
                     };
 
@@ -47,7 +47,7 @@
 
                 var eventsArr = events.split(' '),
                     handler = {
-                        context : context ? context : this
+                        context : context ? context : window || global || this
                     },
                     saveCallback = listenerCallback,
                     saveDelay = delay,
