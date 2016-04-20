@@ -1,7 +1,7 @@
 {
   "name": "events-dispatcher",
-  "version": "1.0.5",
-  "description": "Event dispatcher is a lightweight javascript module for custom events handling in both Node.js and frontend javascript.",
+  "version": "1.0.6",
+  "description": "Event dispatcher is a lightweight javascript module for custom events handling in frontend javascript applications.",
   "main": "events-dispatcher.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
