@@ -1,6 +1,6 @@
 {
   "name": "events-dispatcher",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Event dispatcher is a lightweight javascript module for custom events handling in frontend javascript applications.",
   "main": "events-dispatcher.js",
   "scripts": {
