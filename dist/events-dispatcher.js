@@ -1,9 +1,8 @@
 ;(function(){
     if (typeof define === 'function' && define.amd) {
         define([], dispatcherModule);
-    } else {
-        EventsDispatcher = dispatcherModule();
     }
+    EventsDispatcher = dispatcherModule();
 
     function dispatcherModule(){
         function EventsDispatcher(){
