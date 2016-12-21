@@ -49,15 +49,14 @@
 
                 handler.callback = function(){
 
-                    var args = arguments,
-                        self = this;
+                    var args = arguments;
 
                     if(timeout) {
                         clearTimeout(timeout);
                     }
                     timeout = setTimeout(function(){
-                        saveCallback.apply(self, args);
-                    }, saveDelay);
+                        saveCallback.apply(this, args);
+                    }.bind(this), saveDelay);
 
                 };
 
@@ -97,7 +96,7 @@
                         }
                         iterationListeners = self.listeners[event];
                         for(var i = 0; i < iterationListeners.length; i++){
-                            if(iterationListeners[i].callback.toString() == listenerCallback.toString()){
+                            if(iterationListeners[i].callback == listenerCallback || iterationListeners[i].callback.toString() == listenerCallback.toString()){
                                 iterationListeners.splice(i, 1);
                                 return;
                             }
